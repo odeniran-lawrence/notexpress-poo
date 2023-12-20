@@ -1,8 +1,8 @@
 <?php 
 
-namespace Model;
+namespace Controller;
 
-abstract class Model
+class NoteController
 {
 
 }
