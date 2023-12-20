@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-class NoteController
+class Note
 {
 
 }
