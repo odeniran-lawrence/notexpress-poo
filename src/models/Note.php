@@ -8,8 +8,9 @@ class Note extends Model
 {
     private int $id;
     private string $title;
+    private string $slug;
     private string $content;
-    private int $user_id;
+    private int $image;
 
     /**
      * Get the value of id
@@ -59,22 +60,40 @@ class Note extends Model
         return $this;
     }
 
+  
+
     /**
-     * Get the value of user_id
-     */ 
-    public function getUserId()
+     * Get the value of slug
+     */
+    public function getSlug(): string
     {
-        return $this->user_id;
+        return $this->slug;
     }
 
     /**
-     * Set the value of user_id
-     *
-     * @return  self
-     */ 
-    public function setUserId($user_id)
+     * Set the value of slug
+     */
+    public function setSlug(string $slug): self
     {
-        $this->user_id = $user_id;
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image
+     */
+    public function getImage(): int
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     */
+    public function setImage(int $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
