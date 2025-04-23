@@ -2,23 +2,47 @@
 
 namespace models;
 
-use models\Model;
+use models\AbstractModel;
 
-class Note extends Model
+class Note extends AbstractModel
 {
-    private int $id;
+    
     private string $title;
     private string $slug;
     private string $content;
-    private int $image;
+    private string $image;
+
+    
+    protected string $table = 'notes'; // defini la table ou chercher les donner
+    protected string $fields = 'title, slug, content, image'; // renseigne les champs de la table
+    protected string $values = ':title, :slug, :content, :image';// indique les valeurs pou sql
+    /**
+     * defini les valeur a binder(:title,:slug,:content,:image)
+     * bind: attache une valeur a une variable pour la requete sql
+     */
+    protected array $valuesBinded = [
+        ':title' => '',
+        ':slug' => '',
+        ':content' => '', 
+        ':image' => ''
+    ];
+
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
+     * Method bindValues()
+     * To bind values to the query
+     * @param void
+     * @return void
+     */
+    public function bindValues(): void
     {
-        return $this->id;
+        $this->valuesBinded[':title'] = $this->title;
+        $this->valuesBinded[':slug'] = $this->slug;
+        $this->valuesBinded[':content'] = $this->content;
+        $this->valuesBinded[':image'] = $this->image;
     }
+                    
+
 
     /**
      * Get the value of title
@@ -83,7 +107,7 @@ class Note extends Model
     /**
      * Get the value of image
      */
-    public function getImage(): int
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -91,7 +115,7 @@ class Note extends Model
     /**
      * Set the value of image
      */
-    public function setImage(int $image): self
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
